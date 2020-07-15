@@ -9,15 +9,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    text-decoration: none;
+    list-style-type: none;
+    border: none;
+}
+
+html, body {
+    min-height: 100vh;
 }
 
 html {
     font-size: 62.5%;
-
-}
-
-a {
-    text-decoration: none;
 }
 
 body {
@@ -30,6 +33,33 @@ body {
 
     display: flex;
     flex-direction: column;
+}
+
+header, footer {
+    background: black;
+    padding: 2em 0;
+    text-align: center;
+    width: 100%;
+}
+
+header .container {
+    display: grid;
+    grid-template-columns: 220px auto 280px;
+    align-items: center;
+    grid-gap: 24px;
+}
+
+header .container a {
+    justify-self: start;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+}
+
+.logo h2 {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
 }
 
 footer {
