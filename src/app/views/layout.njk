@@ -6,32 +6,17 @@
 
         <link rel="stylesheet" href="/styles/main.css">
         {% block styles %}{% endblock styles %}
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         {% block title %}
-            <title>Classroom manager</title>
+            <title>Launchstore</title>
         {% endblock title %}
-
     </head>
     <body>
-        <header>
-            <div class="links">
-                <a href="/teachers">Teachers</a>
-                <a href="/students">Students</a>
-                <div class="underbar"></div>
-            </div>
-        </header>
+        {%include 'partials/header.njk'%}
 
         {% block content %}{% endblock content %}
 
-        
-
-         <footer>
-            <p>Todos direitos reservados, Gym manager.
-            </p>
-        </footer>
-        {% block script %}
-        <script src="/scripts/scripts.js"></script>
-        {% endblock script %}
+        {%include 'partials/footer.njk'%}
     </body>
 </html>
