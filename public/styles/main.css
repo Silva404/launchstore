@@ -1,0 +1,37 @@
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;700&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet';
+
+:root {
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;  
+    font-family: Montserrat;
+    height: 100vh;
+    font-size: 1.6rem;
+    line-height: 1.6em;
+
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
