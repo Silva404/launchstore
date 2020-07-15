@@ -2,7 +2,7 @@
 @import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet';
 
 :root {
-    
+    --primary-color: #;
 }
 
 * {
@@ -35,6 +35,12 @@ body {
     flex-direction: column;
 }
 
+.container {
+    width: 90%;
+    max-width: 940px;
+    margin: 0 auto;
+}
+
 header, footer {
     background: black;
     padding: 2em 0;
@@ -44,7 +50,7 @@ header, footer {
 
 header .container {
     display: grid;
-    grid-template-columns: 220px auto 280px;
+    grid-template-columns: 220px auto 300px;
     align-items: center;
     grid-gap: 24px;
 }
@@ -54,12 +60,32 @@ header .container a {
 }
 
 .logo h1 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
 }
 
 .logo h2 {
-    font-size: 0.9rem;
+    font-size: 14px;
     letter-spacing: 2px;
+}
+
+.search input {
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 2px;    
+}
+
+nav.primary ul li {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav.primary ul li a {
+    display: flex;
+    align-items: center;
+}
+
+nav.primary ul li a i {
+    margin-right: 0.5em; 
 }
 
 footer {
