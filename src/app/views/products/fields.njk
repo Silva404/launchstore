@@ -12,7 +12,7 @@
 </div>
 
 <div class="item">
-  <div>Nome</div>
+  <div>Título do anúncio</div>
   <div>
     <input type="text" name="name" placeholder="Nome do produto" value="{{product.name}}">
   </div>
@@ -21,7 +21,7 @@
 <div class="item">
   <div>Descrição</div>
   <div>
-    <textarea name="description" cols="30" rows="10">
+    <textarea name="description">
       {{product.description}}
     </textarea>
   </div>
@@ -52,11 +52,11 @@
     <div>Disponível ?</div>
     <div>
       <span>
-        <input type="radio" name="status" value="1" {% if products.status = "1" %} checked="checked" {% endif %}>
+        <input type="radio" name="status" value="1" {% if products.status == "1" %} checked="checked" {% endif %}>
         Sim
       </span>
       <span>
-        <input type="radio" name="status" value="0" {% if products.status = "0" %} checked="checked" {% endif %}>
+        <input type="radio" name="status" value="0" {% if products.status == "0" %} checked="checked" {% endif %}>
         Não
       </span>
     </div>
