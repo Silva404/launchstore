@@ -1,0 +1,29 @@
+<div class="item">
+  <div>Avatar</div>
+  <div>
+    <input type="text" name="url">
+  </div>
+</div>
+
+<div class="item">
+  <div>Titulo</div>
+  <div>
+    <span>
+      <input type="radio" name="tipo" value="M" {% if user.gender = "M" %} checked="checked" {% endif %}>
+      Masculino
+    </span>
+  </div>
+</div>
+
+<div class="item">
+  <div>Comprador</div>
+  <div>
+    <select name="comprador">
+      {% for compra in comprador %}
+        <option value="{{compra.id}}">
+          {{compra.name}}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
