@@ -21,6 +21,12 @@ module.exports = {
       }
     }
 
-    const results = await Product.create(req.body)
+    let results = await Product.create(req.body)
+    const product = results.rows[0]
+
+    results = await Category.all()
+    const categories = results.rows
+
+    return res.render('produtcts/create.njk', { product, categories })
   }
 }
