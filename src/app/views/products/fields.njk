@@ -12,18 +12,53 @@
 </div>
 
 <div class="item">
-  <div>Avatar</div>
+  <div>Nome</div>
   <div>
-    <input type="text" name="url">
+    <input type="text" name="name" placeholder="Nome do produto" value="{{product.name}}">
   </div>
 </div>
 
 <div class="item">
-  <div>Titulo</div>
+  <div>Descrição</div>
   <div>
-    <span>
-      <input type="radio" name="tipo" value="M" {% if user.gender = "M" %} checked="checked" {% endif %}>
-      Masculino
-    </span>
+    <textarea name="description" cols="30" rows="10">
+      {{product.description}}
+    </textarea>
   </div>
 </div>
+
+{# campo de foto #}
+
+<div class="item">
+  <div>Valor</div>
+  <div>
+    <input type="text" name="price" placeholder="Preço do produto" value="{{product.price}}">
+  </div>
+
+  {% if products.old_price %}
+    <input type="hidden" name="old_price" value="{{products.old_price}}">
+  {% endif %}
+</div>
+
+<div class="item">
+  <div>Quantidade</div>
+  <div>
+    <input type="number" name="quantity" placeholder="Estoque disponível" value="{{product.quantity}}">
+  </div>
+</div>
+
+{% if products.status %}
+  <div class="item">
+    <div>Disponível ?</div>
+    <div>
+      <span>
+        <input type="radio" name="status" value="1" {% if products.status = "1" %} checked="checked" {% endif %}>
+        Sim
+      </span>
+      <span>
+        <input type="radio" name="status" value="0" {% if products.status = "0" %} checked="checked" {% endif %}>
+        Não
+      </span>
+    </div>
+  </div>
+{% endif %}
