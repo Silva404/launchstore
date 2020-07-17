@@ -1,4 +1,17 @@
 <div class="item">
+  <div>Categoria</div>
+  <div>
+    <select name="category_id">
+      {% for category in categories %}
+        <option value="{{category.id}}" {% if products.category_id == category.id%} selected="selected" {% endif %}>
+          {{category.name}}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="item">
   <div>Avatar</div>
   <div>
     <input type="text" name="url">
@@ -12,18 +25,5 @@
       <input type="radio" name="tipo" value="M" {% if user.gender = "M" %} checked="checked" {% endif %}>
       Masculino
     </span>
-  </div>
-</div>
-
-<div class="item">
-  <div>Comprador</div>
-  <div>
-    <select name="comprador">
-      {% for compra in comprador %}
-        <option value="{{compra.id}}">
-          {{compra.name}}
-        </option>
-      {% endfor %}
-    </select>
   </div>
 </div>
