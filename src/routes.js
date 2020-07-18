@@ -7,8 +7,10 @@ routes.get('/',(req, res) => {
 })
 
 routes.get('/products/create', ProductController.create)
-routes.post('/products/create', ProductController.post)
+routes.post('/products', ProductController.post)
 
+
+// alias
 routes.get('/ads/create',(req, res) => {
     return res.rendirect('/products/create')
 })  

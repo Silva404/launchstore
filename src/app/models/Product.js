@@ -15,7 +15,7 @@ module.exports = {
       RETURNING id
     `
 
-    const values = (
+    const values = [     
       data.category_id,
       1,
       data.name,
@@ -24,8 +24,8 @@ module.exports = {
       data.price,
       data.quantity,
       data.status
-    )
+    ] 
 
-    return db.query(query, values)
+    return db.query(query, values) 
   }
 }
