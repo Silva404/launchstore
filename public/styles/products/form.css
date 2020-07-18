@@ -49,7 +49,7 @@ form .item select {
   background-size: 0.65em;
 }
 .item textarea {
-  min-height: 10em;
+  min-height: 8em;
 }
 
 form .fields {

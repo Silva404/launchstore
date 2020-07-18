@@ -51,9 +51,21 @@ module.exports = {
       }
     }
 
-    let results = await Product.update(req.body)
-    const productId = results.rows[0].id
+    req.body.price = req.body.price.replace(/\D/g, '')
 
-    return res.redirect(`/products/${productId}`)
+    if (req.body.old_price !== req.body.price) {
+      const oldProduct = await Product.find(req.body.id)
+
+      req.body.old_price = oldProduct.rows[0].price
+    }
+
+    await Product.update(req.body)
+
+    return res.redirect(`/products/${req.body.id}/edit`)
+  },
+  async delete (req, res) {
+    await Product.delete()
+
+    return res.redirect(`/products/create`)
   }
 }
