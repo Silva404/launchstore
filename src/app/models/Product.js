@@ -8,6 +8,7 @@ module.exports = {
         user_id,
         name,
         description,
+        old_price,
         price,
         quantity,
         status
@@ -23,7 +24,7 @@ module.exports = {
       data.old_price,
       data.price,
       data.quantity,
-      data.status
+      data.status,
     ] 
 
     return db.query(query, values) 

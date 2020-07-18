@@ -24,7 +24,7 @@ module.exports = {
     let results = await Product.create(req.body)
     const productId = results.rows[0].id
     
-    results = await Category.all()
+    results = await Category.all() 
     const categories = results.rows
 
     return res.render('products/create.njk', { productId, categories })
