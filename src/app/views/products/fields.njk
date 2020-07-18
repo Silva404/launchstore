@@ -21,9 +21,7 @@
 <div class="item">
   <div>Descrição</div>
   <div>
-    <textarea name="description">
-      {{product.description}}
-    </textarea>
+    <textarea name="description">{{product.description}}</textarea>
   </div>
 </div>
 
@@ -32,7 +30,7 @@
 <div class="item">
   <div>Valor</div>
   <div>
-    <input type="number" name="price" placeholder="Preço do produto" value="{{product.price}}">
+    <input type="text" name="price" placeholder="Preço do produto" value="{{product.price}}"  >
   </div>
 
   {% if products.old_price %}
