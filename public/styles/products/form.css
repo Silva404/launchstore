@@ -4,8 +4,8 @@ section.form {
   max-width: 700px;
   width: 90%;
 
-  border: 1px solid black;
-  box-shadow: 0 1.125em 1.3em 0 rgba(0, 0, 0, 0.3);
+  /* border: 1px solid black; */
+  box-shadow: 0 0.2em 0.5em 0 rgba(0, 0, 0, 0.15);
   border-radius: 0.5em;
 }
 

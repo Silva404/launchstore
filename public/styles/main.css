@@ -6,6 +6,7 @@
     --gray-color: #;
     --button-save-bg: #;
     --button-save-txt: #;
+    --button-delete-bg: #;
 }
 
 * {
@@ -53,7 +54,7 @@ header, footer {
 
 header .container {
     display: grid;
-    grid-template-columns: 220px auto 300px;
+    grid-template-columns: 220px auto 280px;
     align-items: center;
     grid-gap: 24px;
 }
@@ -97,26 +98,40 @@ footer {
     margin-top: auto;
 }
 
-.regular-button {
+.regular-button,
+.deletar-button,
+.inverted-button {
     align-self: end;
     text-align: center;
     cursor: pointer;
     text-transform: uppercase;
     transition: all 300ms ease;
 
+    margin-top: 1em;
     width: 100%;
-    padding: 0.6em 0;
+    padding: 1em 0;
     font-weight: 500;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+}
+
+.regular-button {
     border: 1px solid var(--button-save-txt);
     color: var(--button-save-txt);
     background: --button-save-bg;
 }
 
-.regular-button:hover {
-    filter: brightness(0.9);
-}
-
 .inverted-button {
 
+}
+
+.deletar-button {
+    border: 1px solid var(--button-save-txt);
+    color: var(--button-save-txt);
+    background: --button-delete-bg;
+}
+
+.regular-button:hover,
+.deletar-button:hover,
+.inverted-button:hover {
+    filter: brightness(0.95);
 }
