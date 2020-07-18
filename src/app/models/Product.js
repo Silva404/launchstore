@@ -18,13 +18,13 @@ module.exports = {
 
     const values = [     
       data.category_id,
-      1,
+      data.user_id || 1,
       data.name,
       data.description,
-      data.old_price,
+      data.old_price || data.price,
       data.price,
       data.quantity,
-      data.status,
+      data.status || 0,
     ] 
 
     return db.query(query, values) 
