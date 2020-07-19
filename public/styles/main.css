@@ -2,8 +2,12 @@
 @import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet';
 
 :root {
-    --primary-color: #;
-    --gray-color: #;
+    --primary-color: #181E36;
+    --secondary-color: #1F2C4F;
+    --terciary-color: #5A5EF4;
+    --primary-txt-color: #323335;
+    --secondary-txt-color: #778087;
+    --input-txt-color: #555C60;
     --button-regular-bg: #4447E0;
     --button-regular-txt: #F3F5FF;
     --button-inverted-border: #7472D1;
@@ -50,10 +54,11 @@ body {
 }
 
 header, footer {
-    background: black;
+    background: var(--primary-color);
     padding: 2em 0;
     text-align: center;
     width: 100%;   
+    position: relative;
 }
 
 header .container {
@@ -68,12 +73,21 @@ header .container a {
     color: #ffffff;
 }
 
+header input {
+    outline: none;
+    border: 1px solid ;
+}
+
+header input:focus {
+    border: 1px solid var(--terciary-color);
+}
+
 .logo h1 {
     font-size: 3.2rem;    
-    color: var(--primary-color);
 }
 
 .logo h2 {
+    color: var(--terciary-color);
     font-size: 14px;
     letter-spacing: 2px;    
 }
@@ -116,6 +130,7 @@ footer {
     font-weight: 700;
     font-size: 1.6rem;
     border-radius: 0.5em;
+    letter-spacing: 0.5px;
 }
 
 .regular-button {
