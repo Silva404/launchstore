@@ -27,21 +27,23 @@
 
 {# campo de foto #}
 
-<div class="item">
-  <div>Valor</div>
-  <div>
-    <input type="text" name="price" placeholder="Preço do produto" value="{{product.price}}" onkeydown="Mask.apply(this, 'formatBRL')">
-  </div>
-  
-  {% if products.old_price %}
-    <input type="hidden" name="old_price" value="{{products.old_price}}">
-  {% endif %}
-</div>
+<div class="side-to-side">
+  <div class="item">
+    <div>Valor</div>
+    <div>
+      <input type="text" name="price" placeholder="Preço do produto" value="{{product.price}}" onkeydown="Mask.apply(this, 'formatBRL')">
+    </div>
 
-<div class="item">
-  <div>Quantidade</div>
-  <div>
-    <input type="number" name="quantity" placeholder="Estoque disponível" value="{{product.quantity}}">
+    {% if products.old_price %}
+      <input type="hidden" name="old_price" value="{{products.old_price}}">
+    {% endif %}
+  </div>
+
+  <div class="item">
+    <div>Quantidade</div>
+    <div>
+      <input type="number" name="quantity" placeholder="Estoque disponível" value="{{product.quantity}}">
+    </div>
   </div>
 </div>
 
