@@ -28,47 +28,49 @@
 <div class="item">
   <div>Photo</div>
   <div>
-    <div class="maximum-files">
-      <input type="file" name="photo_input" id="Photo_input">
-      <p>Buscar</p>
+    <div id="photos-upload">
+      <div class="maximum-files">
+        <input type="file" name="photos" id="photos_input" multiple="multiple" accept="image/*">
+        <span>Buscar</span>
+      </div>
+      <p>No máximo 6 fotos</span>
     </div>
 
-    <span>No máximo 6 fotos</span>
+    <div id="photos-preview"></div>
   </div>
-</div>
 
-<div class="side-to-side">
-  <div class="item">
-    <div>Valor</div>
-    <div>
-      <input type="text" name="price" placeholder="Preço do produto" value="{{product.price}}" onkeydown="Mask.apply(this, 'formatBRL')">
+  <div class="side-to-side">
+    <div class="item">
+      <div>Valor</div>
+      <div>
+        <input type="text" name="price" placeholder="Preço do produto" value="{{product.price}}" onkeydown="Mask.apply(this, 'formatBRL')">
+      </div>
+
+      {% if products.old_price %}
+        <input type="hidden" name="old_price" value="{{products.old_price}}">
+      {% endif %}
     </div>
 
-    {% if products.old_price %}
-      <input type="hidden" name="old_price" value="{{products.old_price}}">
-    {% endif %}
-  </div>
-
-  <div class="item">
-    <div>Quantidade</div>
-    <div>
-      <input type="number" name="quantity" placeholder="Estoque disponível" value="{{product.quantity}}">
+    <div class="item">
+      <div>Quantidade</div>
+      <div>
+        <input type="number" name="quantity" placeholder="Estoque disponível" value="{{product.quantity}}">
+      </div>
     </div>
   </div>
-</div>
 
-{% if product.status == 1 or product.status == 0 %}
-  <div class="item">
-    <div>Disponível ?</div>
-    <div>
-      <span>
-        <input type="radio" name="status" value="1" {% if product.status == "1" %} checked="checked" {% endif %}>
-        Sim
-      </span>
-      <span>
-        <input type="radio" name="status" value="0" {% if product.status == "0" %} checked="checked" {% endif %}>
-        Não
-      </span>
+  {% if product.status == 1 or product.status == 0 %}
+    <div class="item">
+      <div>Disponível ?</div>
+      <div>
+        <span>
+          <input type="radio" name="status" value="1" {% if product.status == "1" %} checked="checked" {% endif %}>
+          Sim
+        </span>
+        <span>
+          <input type="radio" name="status" value="0" {% if product.status == "0" %} checked="checked" {% endif %}>
+          Não
+        </span>
+      </div>
     </div>
-  </div>
-{% endif %}
+  {% endif %}

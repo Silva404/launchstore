@@ -72,3 +72,27 @@ form .item select {
   grid-template-columns: 1fr 1fr;
 }
 
+form .item #photos-upload .maximum-files {
+  position: relative; 
+  display: block;
+  overflow: hidden;
+}
+
+form .item #photos_input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+form .item #photos-upload .maximum-files span {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  padding: 1em 2em;
+
+  border: 1px solid var(--button-regular-bg);
+  color: var(--button-regular-bg);
+  background: var(--button-regular-txt);
+}
