@@ -75,7 +75,6 @@ form .item select {
 form .item #photos-upload {
   position: relative;
   display: block;
-  /* overflow: hidden; */
   width: 92px;
   margin-bottom: 1em;
 }
@@ -101,7 +100,6 @@ form .item #photos-input {
   left: 0;
 
   display: block;
-  /* overflow: hidden; */
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -114,4 +112,26 @@ form .item #photos-input {
 .maximum-files p {
   margin-left: 1em;
   font-size: 1.3rem;
+}
+
+form .item #photos-preview {
+  margin: 1em 0 2em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25em;
+  width: 100%;
+}
+
+form .item #photos-preview .photo {
+  height: 150px;
+}
+
+form .item #photos-preview img {
+  border: 1px solid var(--input-border-color); 
+  border-radius: .25em;
+  
+  object-fit: cover; 
+  width: 100%;
+  height: 100%;
+  padding: .25em;
 }
