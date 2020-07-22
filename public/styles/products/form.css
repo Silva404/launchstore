@@ -73,42 +73,45 @@ form .item select {
 }
 
 form .item #photos-upload {
-  display: flex;
-  width: 119px;
-  height: 70px;
-  overflow: hidden;
-}
-
-form .item #photos-upload p {
-  margin-left: 1em;
-}
-
-.item .maximum-files {
-  position: relative; 
+  position: relative;
   display: block;
   /* overflow: hidden; */
-  
+  width: 92px;
+  margin-bottom: 1em;
 }
 
-.item #photos_input {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: block;
-  overflow: hidden;
-  opacity: 0;
-}
-
-/* .item .maximum-files span {
+form .item #photos-upload span {
+  padding: 0.5em 1em;
   border-radius: 0.25em;
+  box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, .1);
+  width: 100%;
   font-size: 1.4rem;
   text-transform: uppercase;
-  padding: 1em 2em;
-  cursor: pointer;  
+
 
   border: 1px solid var(--button-regular-bg);
   color: var(--button-regular-bg);
   background: var(--button-regular-txt);
-} */
+}
+
+form .item #photos-input {
+  padding: 1.15em 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+  /* overflow: hidden; */
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.maximum-files {
+  display: flex;
+}
+
+.maximum-files p {
+  margin-left: 1em;
+  font-size: 1.3rem;
+}
