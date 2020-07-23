@@ -119,34 +119,53 @@ const PhotosUpload = {
   preview: document.querySelector('#photos-preview'),
   uploadLimit: 6,
   handleFileInput(event) {
-    const { files: filesList } = event.target
-    const { uploadLimit } = PhotosUpload
+    const { files: fileList } = event.target  
+    
+    if (this.hasLimit(event)) return
 
-    if (filesList.length > uploadLimit) {
-      alert(`Upload limit ${PhotosUpload.uploadLimit}`)
-      event.preventDefault()
-      return 
-    }
-
-    Array.from(filesList).forEach(file => {
+    Array.from(fileList).forEach(file => {
       const reader = new FileReader
 
       reader.onload = () => {
-
         const image = new Image()
         image.src = String(reader.result)
     
-        const div = document.createElement('div')
-
-        div.onclick = () => alert(`Remover`)
-    
-        div.classList.add('photos')
-        div.appendChild(image)      
+        const div = this.createContainer(image)
   
-        PhotosUpload.preview.appendChild(div)      
-        
+        PhotosUpload.preview.appendChild(div)             
       } 
+
       reader.readAsDataURL(file)
     })
+  },
+  createContainer(image) {
+    const div = document.createElement('div')
+    div.classList.add('photos')
+
+    div.onclick = () => alert(`Remover`)
+
+    div.appendChild(image)      
+    div.appendChild(this.getRemoveButton())
+
+    return div
+  },
+  hasLimit(event) {
+    const { uploadLimit } = PhotosUpload
+    const { files: fileList } = event.target
+
+    if (fileList.length > uploadLimit) {
+      alert(`Upload limit ${PhotosUpload.uploadLimit}`)
+      event.preventDefault()
+      return false
+    }
+
+    return true
+  },
+  getRemoveButton() {
+    const remove = document.createElement('i')
+    remove.classList.add('material-icons')
+    remove.innerHTML = 'close'
+
+    return remove
   }
 } 
