@@ -150,10 +150,16 @@ footer {
     border: 1px solid var(--button-delete-bg);
     color: var(--button-delete-txt);
     background: var(--button-delete-bg);
+    transition: 600ms;
 }
 
 .regular-button:hover,
-.deletar-button:hover,
 .inverted-button:hover {
-    filter: brightness(0.95);
+    filter: brightness(1.5);
+}
+
+.deletar-button:hover {
+    border: 1px solid var(--button-delete-bg);
+    color: var(--button-delete-bg);
+    background: var(--button-delete-txt);
 }

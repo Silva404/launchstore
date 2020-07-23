@@ -64,7 +64,6 @@ module.exports = {
 
   },
   async put(req, res) {
-
     const keys = Object.keys(req.body)
 
     for (let key of keys) {
@@ -72,7 +71,13 @@ module.exports = {
         return res.send('Please fill all the fields!')
       }
     }
-    // 1,2,3,   [1,2,3]
+
+    if (req.files.length != 0) {
+      const newFilesPromise = req.files.map(file => File.create({...file, product_id: req.body.id}))
+
+      await Promise.all(newFilesPromise)
+    }
+
     if (req.body.removed_files){
       const removedFiles = req.body.removed_files.split(',') 
       const lastIndex = removedFiles.length - 1
