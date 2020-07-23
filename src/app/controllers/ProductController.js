@@ -1,5 +1,6 @@
 const Category = require('../models/Category')
 const Product = require('../models/Product')
+const File = require('../models/File')
 
 const { formatPrice } = require('../../lib/utils')
 
@@ -15,6 +16,7 @@ module.exports = {
       })
   },
   async post(req, res) {
+
     const keys = Object.keys(req.body)
 
     for (let key of keys) {
@@ -23,12 +25,23 @@ module.exports = {
       }
     }
 
+    if (req.files.length == 0) return res.send('send some file')
+
     let results = await Product.create(req.body)
     const productId = results.rows[0].id
 
+    const filesPromise = req.files.map(file => File.create({
+      ...files,
+      productId: productId
+    }))
+
+    await Promise.all(filesPromise)
+
     return res.redirect(`/products/${productId}`)
+
   },
   async edit(req, res) {
+
     let results = await Product.find(req.params.id)
     const product = results.rows[0]
 
@@ -41,8 +54,10 @@ module.exports = {
     const categories = results.rows
 
     return res.render('products/edit.njk', { product, categories })
+
   },
-  async put (req, res) {
+  async put(req, res) {
+
     const keys = Object.keys(req.body)
 
     for (let key of keys) {
@@ -62,10 +77,13 @@ module.exports = {
     await Product.update(req.body)
 
     return res.redirect(`/products/${req.body.id}/edit`)
+
   },
-  async delete (req, res) {
+  async delete(req, res) {
+
     await Product.delete(req.body.id)
 
     return res.redirect(`/products/create`)
+
   }
 }
