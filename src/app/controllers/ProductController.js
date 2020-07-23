@@ -31,13 +31,13 @@ module.exports = {
     const productId = results.rows[0].id
 
     const filesPromise = req.files.map(file => File.create({
-      ...files,
-      productId: productId
+      ...file,
+      product_id: productId
     }))
 
     await Promise.all(filesPromise)
 
-    return res.redirect(`/products/${productId}`)
+    return res.redirect(`/products/${productId}/edit`)
 
   },
   async edit(req, res) {
@@ -53,7 +53,14 @@ module.exports = {
     results = await Category.all()
     const categories = results.rows
 
-    return res.render('products/edit.njk', { product, categories })
+    results = await Product.files(product.id) 
+    let files = results.rows
+    files = files.map(file => ({
+      ...file,
+      src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+    }))
+
+    return res.render('products/edit.njk', { product, categories, files })
 
   },
   async put(req, res) {
@@ -61,10 +68,21 @@ module.exports = {
     const keys = Object.keys(req.body)
 
     for (let key of keys) {
-      if (req.body[key] == '') {
+      if (req.body[key] == '' && key != "removed_files") {
         return res.send('Please fill all the fields!')
       }
     }
+    // 1,2,3,   [1,2,3]
+    if (req.body.removed_files){
+      const removedFiles = req.body.removed_files.split(',')
+      const lastIndex = removedFiles.length - 1
+      removedFiles.splice(lastIndex, 1)
+
+      const promiseRemovedFiles = removedFiles.map(id => File.delete(id))
+
+      await Promise.all(promiseRemovedFiles)
+    }
+
 
     req.body.price = req.body.price.replace(/\D/g, '')
 

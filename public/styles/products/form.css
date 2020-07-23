@@ -155,8 +155,7 @@ form .item #photos-preview .photo i {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 100%;
-  transform: scale(1);
+  font-size: 150%;
   transition: 400ms ease;
 }
 
