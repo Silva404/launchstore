@@ -116,14 +116,37 @@ const Mask = {
 
 
 const PhotosUpload = {
+  preview: document.querySelector('#photos-preview'),
   uploadLimit: 6,
   handleFileInput(event) {
     const { files: filesList } = event.target
+    const { uploadLimit } = PhotosUpload
 
-    const image = new Image()
+    if (filesList.length > uploadLimit) {
+      alert(`Upload limit ${PhotosUpload.uploadLimit}`)
+      event.preventDefault()
+      return 
+    }
+
+    Array.from(filesList).forEach(file => {
+      const reader = new FileReader
+
+      reader.onload = () => {
+
+        const image = new Image()
+        image.src = String(reader.result)
     
+        const div = document.createElement('div')
 
-
-    console.log(this.uploadLimit)
+        div.onclick = () => alert(`Remover`)
+    
+        div.classList.add('photos')
+        div.appendChild(image)      
+  
+        PhotosUpload.preview.appendChild(div)      
+        
+      } 
+      reader.readAsDataURL(file)
+    })
   }
-}
+} 
