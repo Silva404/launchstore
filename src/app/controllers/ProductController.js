@@ -74,7 +74,7 @@ module.exports = {
     }
     // 1,2,3,   [1,2,3]
     if (req.body.removed_files){
-      const removedFiles = req.body.removed_files.split(',')
+      const removedFiles = req.body.removed_files.split(',') 
       const lastIndex = removedFiles.length - 1
       removedFiles.splice(lastIndex, 1)
 
