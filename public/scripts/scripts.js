@@ -20,9 +20,9 @@ const PhotosUpload = {
   input: '',
   files: [],
   handleFileInput(event) {
-    const { files: fileList } = event.target  
+    const { files: fileList } = event.target
     this.input = event.target
-    
+
     if (this.hasLimit(event)) return
 
     Array.from(fileList).forEach(file => {
@@ -33,11 +33,11 @@ const PhotosUpload = {
       reader.onload = () => {
         const image = new Image()
         image.src = String(reader.result)
-    
+
         const div = this.createContainer(image)
-  
-        PhotosUpload.preview.appendChild(div)             
-      } 
+
+        PhotosUpload.preview.appendChild(div)
+      }
 
       reader.readAsDataURL(file)
     })
@@ -50,17 +50,35 @@ const PhotosUpload = {
 
     div.onclick = this.removePhoto
 
-    div.appendChild(image)      
+    div.appendChild(image)
     div.appendChild(this.getRemoveButton())
 
     return div
   },
   hasLimit(event) {
-    const { uploadLimit, input: fileList } = PhotosUpload
+    const { uploadLimit, input, preview } = PhotosUpload
+    const { files: fileList } = input
+
+    const limit = () => {
+      alert(`Você selecionou mais de ${PhotosUpload.uploadLimit} fotos`)
+      event.preventDefault()
+      return
+    }
 
     if (fileList.length > uploadLimit) {
-      alert(`Upload limit ${PhotosUpload.uploadLimit}`)
-      event.preventDefault()
+      limit()
+      return true
+    }
+
+    const photosDiv = []
+    preview.childNodes.forEach(item => {
+      if (item.classList && item.classList == 'photo') photosDiv.push(item)
+    })
+
+    const totalPhotos = fileList.length + photosDiv.length
+
+    if (totalPhotos > uploadLimit) {
+      limit()
       return true
     }
 
@@ -73,7 +91,7 @@ const PhotosUpload = {
 
     return remove
   },
-  getAllFiles(){
+  getAllFiles() {
     const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer()
 
     this.files.forEach(file => dataTransfer.items.add(file))
