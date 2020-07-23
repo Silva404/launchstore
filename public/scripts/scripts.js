@@ -110,6 +110,20 @@ const Mask = {
 //   }
 // }
 
+
+
+
+
+
 const PhotosUpload = {
-  
+  uploadLimit: 6,
+  handleFileInput(event) {
+    const { files: filesList } = event.target
+
+    const image = new Image()
+    
+
+
+    console.log(this.uploadLimit)
+  }
 }
