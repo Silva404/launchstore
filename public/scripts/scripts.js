@@ -18,11 +18,11 @@ const PhotosUpload = {
   preview: document.querySelector('#photos-preview'),
   uploadLimit: 6,
   handleFileInput(event) {
-    const { files: filelist } = event.target
+    const { files: fileList } = event.target
 
     if (PhotosUpload.hasLimit(event)) return
 
-    Array.from(filelist).forEach(file => {
+    Array.from(fileList).forEach(file => {
       const reader = new FileReader()
 
       reader.onload = () => {
@@ -39,8 +39,9 @@ const PhotosUpload = {
   },
   hasLimit(event) {
     const { uploadLimit } = PhotosUpload
+    const { files: fileList } = event.target
 
-    if (filelist.length > uploadLimit) {
+    if (fileList.length > uploadLimit) {
       alert(`Selecione no máximo ${uploadLimit} fotos`)
       event.preventDefault()
       return true
@@ -51,9 +52,25 @@ const PhotosUpload = {
   getContainer(image) {
     const div = document.createElement('div')
     div.classList.add('photo')
-    div.onclick = () => alert('remover foto')
+    div.onclick = this.removePhoto
     div.appendChild(image)
+    div.appendChild(this.getRemoveButton())
 
     return div
+  },
+  getRemoveButton(){
+    const remove = document.createElement('i')
+    remove.classList.add('material-icons')
+    remove.innerHTML = 'close'
+
+    return remove
+  },
+  removePhoto(event) {
+    // event.target = i e um item acima dele = img
+    const photoDiv = event.target.parentNode
+    const photosArray = Array.from(PhotosUpload.preview)
+    
+    const index = photosArray.indexOf(photoDiv)
+    photoDiv.remove()
   }
 }
