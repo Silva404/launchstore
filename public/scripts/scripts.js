@@ -156,10 +156,10 @@ const PhotosUpload = {
     if (fileList.length > uploadLimit) {
       alert(`Upload limit ${PhotosUpload.uploadLimit}`)
       event.preventDefault()
-      return false
+      return true
     }
 
-    return true
+    return false
   },
   getRemoveButton() {
     const remove = document.createElement('i')
