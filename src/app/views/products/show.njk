@@ -13,7 +13,7 @@
           <img src="http://placehold.it/500x500" alt="">
           {% else%}
           <img src="{{files[0].src}}" alt="{{files[0].name}}">
-          <img src="{{files[0].src}}" alt="{{files[0].name}}" class="zoom">
+          <img src="{{files[0].src}}" alt="{{files[0].name}}" class="zoom" onmouseover="hightlightZoom.mousein(event)" id="zoom-result">
         {% endif %}
       </div>
       <div class="gallery-preview">

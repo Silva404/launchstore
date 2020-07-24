@@ -137,16 +137,9 @@ const ImageGallery = {
   }
 }
 
-const previewZooom = {
-  zoomImage(e) {
-    let pos, x, y 
-
-    e.preventDefault()
-    pos = this.getCursorPos(e)
-
-    // x=
-  },
-  getCursorPos(e) {
-    
+const hightlightZoom = {
+  imgZoom: document.getElementById('zoom-result'),
+  mouseIn(e) {
+    this.imgZoom.style.display = block
   }
 }
