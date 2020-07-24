@@ -124,6 +124,16 @@ const PhotosUpload = {
   }
 } 
 
-const setImage = {
-  
+const ImageGallery = {
+  highlight: document.querySelector('.highlight img'),
+  galleryImages: document.querySelectorAll('.gallery-preview'),
+  setImage(e) {
+    const { target } = e 
+
+    this.galleryImages.forEach(image => image.classList.remove('active'))
+    target.classList.add('active')
+    // this.highlight.src = target.src
+
+    console.log(target)
+  }
 }

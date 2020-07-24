@@ -20,7 +20,8 @@
           <img src="{{image.src}}" alt="{{image.name}}"
           {% if loop.index0 == 0 %}
             class="active"
-          {% endif %}>
+          {% endif %}
+          onclick="ImageGallery.setImage(event)">
           
         {% endfor %}
       </div>
