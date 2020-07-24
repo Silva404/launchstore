@@ -2,7 +2,7 @@ const Category = require('../models/Category')
 const Product = require('../models/Product')
 const File = require('../models/File')
 
-const { formatPrice } = require('../../lib/utils')
+const { formatPrice, date } = require('../../lib/utils')
 
 module.exports = {
   create(req, res) {
@@ -40,6 +40,24 @@ module.exports = {
     return res.redirect(`/products/${productId}/edit`)
 
   },
+  async show(req,res) {
+    const results = await Product.find(req.params.id)
+    const product = results.rows[0]
+
+    const { day, month, hours, minutes, year } = date(product.updated_at)
+
+    product.published = {
+      day: `${day}/${month}/${year}`,
+      hours: `${hours}h/${minutes} minutos`
+    }
+
+    product.price = formatPrice(product.price)
+    product.old_price = formatPrice(product.old_price)
+
+    if (!product) return res.send('product not found')
+
+    return res.render('products/show', { product })
+  },
   async edit(req, res) {
 
     let results = await Product.find(req.params.id)
@@ -73,7 +91,7 @@ module.exports = {
     }
 
     if (req.files.length != 0) {
-      const newFilesPromise = req.files.map(file => File.create({...file, product_id: req.body.id}))
+      const newFilesPromise = req.files.map(file => File.create({...file, id: req.body.id}))
 
       await Promise.all(newFilesPromise)
     }
@@ -107,6 +125,5 @@ module.exports = {
     await Product.delete(req.body.id)
 
     return res.redirect(`/products/create`)
-
   }
 }

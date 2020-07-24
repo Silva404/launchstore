@@ -127,7 +127,7 @@ footer {
 
     margin-top: 1em;
     width: 100%;
-    padding: 1em 0;
+    padding: 1em 2em;
     font-weight: 700;
     font-size: 1.6rem;
     border-radius: 0.5em;
@@ -155,7 +155,7 @@ footer {
 
 .regular-button:hover,
 .inverted-button:hover {
-    filter: brightness(1.5);
+    filter: brightness(1.15);
 }
 
 .deletar-button:hover {

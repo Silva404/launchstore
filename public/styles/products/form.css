@@ -1,6 +1,6 @@
 section.form {
   padding: 2em 1.5em;
-  margin: 2em auto;
+  margin: 2em auto 4em;
   max-width: 700px;
   width: 90%;
 
@@ -30,7 +30,6 @@ form .item > div:nth-child(1) {
 }
 
 form .fields {
-  margin-bottom: 3em;
   color: var(--secondary-txt-color);
 }
 
