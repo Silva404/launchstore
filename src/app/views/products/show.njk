@@ -31,12 +31,14 @@
         </div>
         <div class="buy">
           {% if product.status == 0 %}
-          {% if condition %}
+            <p class="unavaible">Produto Indisponivel</p>
+          {% elseif product.quantity == 0 %}
+            <p class="unavaible">Fora de estoque</p>
+          {% else %}
+            <button class="regular-button">
+              comprar
+            </button>
           {% endif %}
-          {% endif %}
-          <button class="regular-button">
-            comprar
-          </button>
         </div>
       </div>
     </div>

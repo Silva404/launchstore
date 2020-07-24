@@ -48,7 +48,7 @@ module.exports = {
 
     product.published = {
       day: `${day}/${month}/${year}`,
-      hours: `${hours}h/${minutes} minutos`
+      hours: `${hours}h/${minutes}`
     }
 
     product.price = formatPrice(product.price)
