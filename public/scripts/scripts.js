@@ -122,17 +122,31 @@ const PhotosUpload = {
 
     photoDiv.remove()
   }
-} 
+}
 
 const ImageGallery = {
   highlight: document.querySelector('.highlight img'),
   galleryImages: document.querySelectorAll('.gallery-preview img'),
   setImage(e) {
-    const { target } = e 
+    const { target } = e
 
     this.galleryImages.forEach(image => image.classList.remove('active'))
     target.classList.add('active')
     this.highlight.src = target.src
 
+  }
+}
+
+const previewZooom = {
+  zoomImage(e) {
+    let pos, x, y 
+
+    e.preventDefault()
+    pos = this.getCursorPos(e)
+
+    // x=
+  },
+  getCursorPos(e) {
+    
   }
 }
