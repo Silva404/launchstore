@@ -123,3 +123,7 @@ const PhotosUpload = {
     photoDiv.remove()
   }
 } 
+
+const setImage = {
+  
+}

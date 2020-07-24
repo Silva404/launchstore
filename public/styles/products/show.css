@@ -67,3 +67,44 @@
   margin: 0;
   text-transform: uppercase;
 }
+
+.gallery img {
+  width: 100%;
+}
+
+.gallery .highlight {
+  width: 100%;
+
+}
+
+.gallery .highlight > img {
+  width: 100%;
+  height: 300px;
+  object-fit: none;
+  object-position: 50% 50%;
+
+  width: 100%;
+  border-radius: 0.5em;
+  cursor: zoom-in;
+}
+
+.gallery .gallery-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 0.5em;
+}
+
+.gallery .gallery-preview img {
+  height: 100px;
+  width: 100%;
+  opacity: 0.6;
+  object-fit: cover;  
+  cursor: pointer;
+
+  transition: 400ms ease;
+}
+
+.gallery .gallery-preview img:hover, 
+.gallery .gallery-preview img.active {
+  opacity: 1;
+}
