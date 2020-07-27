@@ -140,6 +140,6 @@ const ImageGallery = {
 const hightlightZoom = {
   imgZoom: document.getElementById('zoom-result'),
   mouseIn(e) {
-    this.imgZoom.style.display = block
+    this.imgZoom.style.display = block 
   }
 }

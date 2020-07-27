@@ -13,16 +13,11 @@
           <img src="http://placehold.it/500x500" alt="">
           {% else%}
           <img src="{{files[0].src}}" alt="{{files[0].name}}">
-          <img src="{{files[0].src}}" alt="{{files[0].name}}" class="zoom" onmouseover="hightlightZoom.mousein(event)" id="zoom-result">
         {% endif %}
       </div>
       <div class="gallery-preview">
         {% for image in files %}
-          <img src="{{image.src}}" alt="{{image.name}}"
-          {% if loop.index0 == 0 %}
-            class="active"
-          {% endif %}
-          onclick="ImageGallery.setImage(event)">          
+          <img src="{{image.src}}" alt="{{image.name}}" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
         {% endfor %}
       </div>
     </div>
@@ -47,6 +42,7 @@
             <span class="old price">{{product.old_price}}</span>
           {% endif %}
         </div>
+
         <div class="buy">
           {% if product.status == 0 %}
             <p class="unavaible">Produto Indisponivel</p>
@@ -56,6 +52,15 @@
             <button class="regular-button">
               comprar
             </button>
+            <div class="check">
+              <span class="material-icons">
+                check
+              </span>
+              <div class="disponivel">
+                {# <h5>DISPONIBILIDADE</h5> #}
+                <p>Em estoque!</p>
+              </div>
+            </div>
           {% endif %}
         </div>
       </div>

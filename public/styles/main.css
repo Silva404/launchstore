@@ -7,6 +7,10 @@
     --terciary-color: #5A5EF4;
     --primary-txt-color: #323335;
     --secondary-txt-color: #778087;
+
+    --estoque-bg: #BBF7DE;
+    --estoque-txt: #23A06D;
+    --input-txt-color: #555C60;
     --input-txt-color: #555C60;
     --button-regular-bg: #4447E0;
     --button-regular-txt: #F3F5FF;
@@ -132,6 +136,7 @@ footer {
     font-size: 1.6rem;
     border-radius: 0.5em;
     letter-spacing: 0.5px;
+    font-family: Roboto;
 }
 
 .regular-button {

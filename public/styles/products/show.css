@@ -103,9 +103,11 @@
 }
 
 .gallery .gallery-preview img {
-  height: 60px;
+  height: 80px;
   width: 100%;
   opacity: 0.6;
+  border-radius: 0.25em;
+  border: 1px solid var(--secondary-txt-color);
   object-fit: cover;  
   cursor: pointer;
 
@@ -115,4 +117,26 @@
 .gallery .gallery-preview img:hover, 
 .gallery .gallery-preview img.active {
   opacity: 1;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.check span {
+  margin-right: 0.5em;
+  color: var(--estoque-txt);
+}
+
+.check .disponivel h5 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.check .disponivel p {
+  font-size: 1.4rem;
+  color: var(--estoque-txt);
+  line-height: 1.5rem;
 }
