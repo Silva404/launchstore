@@ -114,7 +114,7 @@ const PhotosUpload = {
     const photoDiv = event.target.parentNode
 
     if (photoDiv.id) {
-      const removedFiles = document.querySelector('input[name=removed_files')
+      const removedFiles = document.querySelector('input[name=removed_files]')
       if (removedFiles) {
         removedFiles.value += `${photoDiv.id},`
       }
@@ -134,12 +134,5 @@ const ImageGallery = {
     target.classList.add('active')
     this.highlight.src = target.src
 
-  }
-}
-
-const hightlightZoom = {
-  imgZoom: document.getElementById('zoom-result'),
-  mouseIn(e) {
-    this.imgZoom.style.display = block 
   }
 }

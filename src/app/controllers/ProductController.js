@@ -65,7 +65,6 @@ module.exports = {
     return res.render('products/show', { product, files })
   },
   async edit(req, res) {
-
     let results = await Product.find(req.params.id)
     const product = results.rows[0]
 
@@ -85,7 +84,6 @@ module.exports = {
     }))
 
     return res.render('products/edit.njk', { product, categories, files })
-
   },
   async put(req, res) {
     const keys = Object.keys(req.body)
@@ -100,7 +98,7 @@ module.exports = {
       const newFilesPromise = req.files.map(file => File.create({...file, id: req.body.id}))
 
       await Promise.all(newFilesPromise)
-    }
+    } 
 
     if (req.body.removed_files){
       const removedFiles = req.body.removed_files.split(',') 
@@ -111,7 +109,6 @@ module.exports = {
 
       await Promise.all(promiseRemovedFiles)
     }
-
 
     req.body.price = req.body.price.replace(/\D/g, '')
 

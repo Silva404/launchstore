@@ -7,13 +7,17 @@ module.exports = {
   async index(req, res){
     let results = await Product.all()
     const products = results.rows
+    console.log(products);
 
     if (!products) return res.send('Products not found!')
 
-    // async function getImage(productId) {
-    //   let results = await Product.files()
-    // }
+    async function getImage(productId) {
+      let results = await Product.files()
+      let files = results.rows
+      files = files.map(file => Product.files(products))
 
-    return
+    }
+
+    return res.render('home/index')
   }
 }
