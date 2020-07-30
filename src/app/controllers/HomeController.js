@@ -10,6 +10,10 @@ module.exports = {
 
     if (!products) return res.send('Products not found!')
 
-    
+    // async function getImage(productId) {
+    //   let results = await Product.files()
+    // }
+
+    return
   }
 }
