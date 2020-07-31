@@ -5,9 +5,28 @@
 {% endblock styles %}
 
 {% block content %}
-  <section class="shop container">
-    <h2>Últimos produtos</h2>
+  <section class="search-products container">
 
+    <aside>
+      <div class="header">
+        <h2>Nome</h2>
+        <p>Resultados</p>
+      </div>
+
+      <nav class="categorias">
+        <h4>Categorias</h4>
+        <ul>
+          <li>
+            <a href="#">eaea</a>
+          </li>
+          <li>
+            <a href="#">eaea</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  </section>
+  <section class="shop container">
     <div class="items">
       {% for product in products %}
         <div class="product">
