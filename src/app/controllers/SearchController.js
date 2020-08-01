@@ -29,7 +29,7 @@ module.exports = {
 
       const eachProductFixed = await Promise.all(productsPromise)
 
-      return res.render('home/index', { products: eachProductFixed })
+      return res.render('search/index', { products: eachProductFixed })
     } catch (err) {
       console.log(err)
     }
