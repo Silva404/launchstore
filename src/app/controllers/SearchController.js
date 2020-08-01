@@ -5,18 +5,17 @@ const Product = require('../models/Product')
 module.exports = {
   async index(req, res) {
     try {
-      let results = await Product.all()
-      const products = results.rows
+      const products = await Product.all()
 
       if (!products) return res.send('Products not found!')
 
       async function getImage(productId) {
         let results = await Product.files(productId)
-        const files = results.rows.map(file =>
+        results = results.rows.map(file =>
           `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
         )
 
-        return files[0]
+        return results[0]
       }
 
       const productsPromise = products.map(async product => {

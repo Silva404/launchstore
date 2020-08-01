@@ -1,11 +1,13 @@
 const db = require('../../config/db')
 
 module.exports = {
-  all(){
-    return db.query(`
+  async all(){
+    const results = await db.query(`
     SELECT * FROM products
     ORDER BY updated_at DESC
     `)
+    
+    return results.rows
   },
   create(data) {
     const query = `
