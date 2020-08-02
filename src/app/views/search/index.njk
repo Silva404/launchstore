@@ -8,14 +8,13 @@
 
 {% block content %}
   <section class="search-products container">
-
     <aside>
       <div class="header">
         <h2>Nome</h2>
         <p>Resultados</p>
       </div>
 
-      <nav class="categorias">
+      <nav class="categories">
         <h4>Categorias</h4>
         <ul>
           <li>
@@ -27,7 +26,8 @@
         </ul>
       </nav>
     </aside>
-  </section>
 
   {{ section.products('Ultimos produtos', 'container', products)}}
+  </section>
+
 {% endblock content %}

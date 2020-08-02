@@ -11,7 +11,7 @@ module.exports = {
 
       async function getImage(productId) {
         let results = await Product.files(productId)
-        results = results.rows.map(file =>
+        results = results.map(file =>
           `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
         )
 

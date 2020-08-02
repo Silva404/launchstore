@@ -1,5 +1,11 @@
-.shop h2 {
+.shop h2,
+aside .header h2{
   margin: 2.5em 0 1.5em;
+}
+
+aside .header h2 {
+  margin-bottom: 0.5em;
+  text-transform: capitalize;
 }
 
 .shop {
@@ -8,7 +14,7 @@
 
 .items {
   display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, minmax(215px, 1fr));
   gap: 2em;
 }
 
@@ -34,4 +40,24 @@
   margin: 0.5em 0;
   color: var(--input-txt-color);
   font-weight: 300;
+}
+
+.search-products {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+
+}
+
+.header p {
+  margin-bottom: 2em;
+}
+
+.categories h4 {
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+}
+
+.categories a {
+  font-size: 1.4rem;
 }
