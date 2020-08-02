@@ -6,10 +6,10 @@ module.exports = {
     SELECT * FROM products
     ORDER BY updated_at DESC
     `)
-    
+
     return results.rows
   },
-  create(data) {
+  async create(data) {
     const query = `
       INSERT INTO products (
         category_id,
@@ -36,8 +36,9 @@ module.exports = {
       data.quantity,
       data.status || 1,
     ]
+    const results = await db.query(query, values)
 
-    return db.query(query, values)
+    return results.rows
   },
   find(id) {
     return db.query(`SELECT * FROM products WHERE id =  $1`, [id])

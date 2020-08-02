@@ -5,18 +5,16 @@ const File = require('../models/File')
 const { formatPrice, date } = require('../../lib/utils')
 
 module.exports = {
-  create(req, res) {
-    Category.all()
-      .then(results => {
-        const categories = results.rows
+  async create(req, res) {
+    try {
+      const categories = await Category.all()
 
-        return res.render('products/create.njk', { categories })
-      }).catch(err => {
-        throw new Error(err)
-      })
+      return res.render('products/create.njk', { categories })
+    } catch (err) {
+      console.log(err)
+    }
   },
   async post(req, res) {
-
     const keys = Object.keys(req.body)
 
     for (let key of keys) {
@@ -28,7 +26,7 @@ module.exports = {
     if (req.files.length == 0) return res.send('send some file')
 
     let results = await Product.create(req.body)
-    const productId = results.rows[0].id
+    const productId = results[0].id
 
     const filesPromise = req.files.map(file => File.create({
       ...file,
@@ -40,7 +38,7 @@ module.exports = {
     return res.redirect(`/products/${productId}/edit`)
 
   },
-  async show(req,res) {
+  async show(req, res) {
     let results = await Product.find(req.params.id)
     const product = results.rows[0]
 
@@ -57,7 +55,7 @@ module.exports = {
     results = await Product.files(product.id)
     const files = results.rows.map(file => ({
       ...file,
-      src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}` 
+      src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
     }))
 
     if (!product) return res.send('product not found')
@@ -76,7 +74,7 @@ module.exports = {
     results = await Category.all()
     const categories = results.rows
 
-    results = await Product.files(product.id) 
+    results = await Product.files(product.id)
     let files = results.rows
     files = files.map(file => ({
       ...file,
@@ -95,13 +93,13 @@ module.exports = {
     }
 
     if (req.files.length != 0) {
-      const newFilesPromise = req.files.map(file => File.create({...file, id: req.body.id}))
+      const newFilesPromise = req.files.map(file => File.create({ ...file, id: req.body.id }))
 
       await Promise.all(newFilesPromise)
-    } 
+    }
 
-    if (req.body.removed_files){
-      const removedFiles = req.body.removed_files.split(',') 
+    if (req.body.removed_files) {
+      const removedFiles = req.body.removed_files.split(',')
       const lastIndex = removedFiles.length - 1
       removedFiles.splice(lastIndex, 1)
 
