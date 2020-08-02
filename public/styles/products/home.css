@@ -2,6 +2,11 @@
 aside .header h2{
   margin: 2.5em 0 1.5em;
 }
+.shop h2,
+aside .header h2,
+.categories h4 {
+  color: var(--primary-txt-color);
+}
 
 aside .header h2 {
   margin-bottom: 0.5em;
@@ -50,6 +55,7 @@ aside .header h2 {
 
 .header p {
   margin-bottom: 2em;
+  color: var(--input-txt-color);
 }
 
 .categories h4 {
@@ -58,6 +64,7 @@ aside .header h2 {
   font-size: 1.4rem;
 }
 
-.categories a {
+.categories ul li a {
   font-size: 1.4rem;
+  color: var(--input-txt-color);
 }
