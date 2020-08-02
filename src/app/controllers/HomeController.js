@@ -6,6 +6,7 @@ module.exports = {
   async index(req, res) {
     try {
       const products = await Product.all()
+      console.log(products);
 
       if (!products) return res.send('Products not found!')
 

@@ -7,7 +7,7 @@ module.exports = {
     try {
 
       let results = '',
-          params = {}
+        params = {}
 
       const { filter, category } = req.query
 
@@ -28,7 +28,9 @@ module.exports = {
         return results[0]
       }
 
-        results = results.map(async product => {
+      results = await Product.search(params)
+
+      results = results.map(async product => {
         product.image = await getImage(product.id)
         product.oldPrice = formatPrice(product.old_price)
         product.price = formatPrice(product.price)
@@ -46,7 +48,14 @@ module.exports = {
       const categories = products.map(product => ({
         id: product.category_id,
         name: product.category_name
-      }))
+      })).reduce((categoriesFiltered, category) => {
+        
+        const found = categoriesFiltered.some(cat => cat.id == category.id)
+
+        if (!found) categoriesFiltered.push(category)
+
+        return categoriesFiltered 
+      }, [])
 
       return res.render('search/index', { products, search, categories })
     } catch (err) {

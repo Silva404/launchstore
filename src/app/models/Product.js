@@ -3,7 +3,10 @@ const db = require('../../config/db')
 module.exports = {
   async all() {
     const results = await db.query(`
-    SELECT * FROM products
+    SELECT products.*,
+    categories.name AS category_name 
+    FROM products
+    LEFT JOIN categories ON (categories.id = products.category_id)
     ORDER BY updated_at DESC
     `)
 
@@ -90,7 +93,7 @@ module.exports = {
     if (category) {
       filterQuery = `
       ${filterQuery}
-      products.category_id = ${category_id}
+      products.category_id = ${category}
       AND
       `
     }
@@ -103,11 +106,10 @@ module.exports = {
 
     query = `
         SELECT products.*, 
-        categories.name AS categories_name
+        categories.name AS category_name
         FROM products 
         LEFT JOIN categories ON (categories.id = products.category_id)
         ${filterQuery}
-        GROUP BY categories.name
       `
 
     const results = await db.query(query)
