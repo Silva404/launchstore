@@ -99,18 +99,18 @@ module.exports = {
       products.name ilike '%${filter}%'
       OR products.description ilike '%${filter}%'
     `
-    let totalQuery = `(
-      SELECT (*) FROM products
-      ${filterQuery}
-    ) AS total`
+    // let totalQuery = `(
+    //   SELECT (*) FROM products
+    //   ${filterQuery}
+    // ) AS total`
+    // ${totalQuery},
+    //GROUP BY products.id
 
     query = `
     SELECT products.*,
-    ${totalQuery},
     categories.name AS category_name
     FROM products
     LEFT JOIN categories ON (categories.id = products.category_id)
-    GROUP BY products.id, categories.name
     `
 
     const results = await db.query(query)

@@ -10,19 +10,18 @@
   <section class="search-products container">
     <aside>
       <div class="header">
-        <h2>Nome</h2>
-        <p>Resultados</p>
+        <h2>{{search.term}}</h2>
+        <p>{{search.total}} Resultados</p>
       </div>
 
       <nav class="categories">
         <h4>Categorias</h4>
         <ul>
+          {% for category in categories %}
           <li>
-            <a href="#">eaea</a>
+            <a href="/products/search?filter={{search.term}}&category={{category.id}}">{{category.name}}</a>
           </li>
-          <li>
-            <a href="#">eaea</a>
-          </li>
+          {% endfor %}
         </ul>
       </nav>
     </aside>

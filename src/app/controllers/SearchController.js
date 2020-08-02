@@ -35,11 +35,22 @@ module.exports = {
         product.price = formatPrice(product.price)
 
         return product
-      }).filter((product, index) => index > 2 ? false : true)
+      })
+      // NÃO ENTENDI O PORQUE DO FILTER
 
       const products = await Promise.all(productsPromise)
 
-      return res.render('search/index', { products })
+      const search = {
+        term: req.query.filter,
+        total: products.length
+      }
+
+      const categories = products.map(product => ({
+        id: product.category_id,
+        name: product.category_name
+      }))
+
+      return res.render('search/index', { products, search, categories })
     } catch (err) {
       console.log(err)
     }
