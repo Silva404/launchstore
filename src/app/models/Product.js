@@ -80,7 +80,8 @@ module.exports = {
     const results = await db.query(`SELECT * FROM files WHERE product_id = $1`, [id])
 
     return results.rows
-  }, search (params){
+  }, 
+  async search (params){
     const { filter, category } = params
 
     let query = '',
@@ -112,6 +113,8 @@ module.exports = {
     GROUP BY products.id, categories.name
     `
 
+    const results = await db.query(query)
 
+    return results.rows
   }
 } 
