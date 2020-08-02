@@ -5,30 +5,22 @@ const Product = require('../models/Product')
 module.exports = {
   async index(req, res) {
     try {
-      const products = await Product.all()
+      let results,
+        params = {}
 
-      if (!products) return res.send('Products not found!')
+      const { filter, category } = req.query
 
-      async function getImage(productId) {
-        let results = await Product.files(productId)
-        results = results.map(file =>
-          `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-        )
+      if (!filter) return res.redirect('/')
 
-        return results[0]
+      params.filter = filter
+
+      if (category) {
+        params.category = category  
       }
 
-      const productsPromise = products.map(async product => {
-        product.image = await getImage(product.id)
-        product.oldPrice = formatPrice(product.old_price)
-        product.price = formatPrice(product.price)
+      results = await Product.search(params)
 
-        return product
-      }).filter((product, index) => index > 2 ? false : true)
-
-      const eachProductFixed = await Promise.all(productsPromise)
-
-      return res.render('search/index', { products: eachProductFixed })
+      return res.render('search/index', { products })
     } catch (err) {
       console.log(err)
     }
