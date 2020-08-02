@@ -1,7 +1,7 @@
 const db = require('../../config/db')
 
 module.exports = {
-  async all(){
+  async all() {
     const results = await db.query(`
     SELECT * FROM products
     ORDER BY updated_at DESC
@@ -67,8 +67,8 @@ module.exports = {
       data.old_price,
       data.price,
       data.quantity,
-      data.status,      
-      data.id        
+      data.status,
+      data.id
     ]
 
     return db.query(query, values)
@@ -80,17 +80,18 @@ module.exports = {
     const results = await db.query(`SELECT * FROM files WHERE product_id = $1`, [id])
 
     return results.rows
-  }, 
-  async search (params){
+  },
+  async search(params) {
     const { filter, category } = params
 
     let query = '',
-        filterQuery = `WHERE`
+      filterQuery = 'WHERE'
 
     if (category) {
       filterQuery = `
-        ${filterQuery}
-        products.category_id  =
+      ${filterQuery}
+      products.category_id = ${category_id}
+      AND
       `
     }
 
@@ -99,19 +100,15 @@ module.exports = {
       products.name ilike '%${filter}%'
       OR products.description ilike '%${filter}%'
     `
-    // let totalQuery = `(
-    //   SELECT (*) FROM products
-    //   ${filterQuery}
-    // ) AS total`
-    // ${totalQuery},
-    //GROUP BY products.id
 
     query = `
-    SELECT products.*,
-    categories.name AS category_name
-    FROM products
-    LEFT JOIN categories ON (categories.id = products.category_id)
-    `
+        SELECT products.*, 
+        categories.name AS categories_name
+        FROM products 
+        LEFT JOIN categories ON (categories.id = products.category_id)
+        ${filterQuery}
+        GROUP BY categories.name
+      `
 
     const results = await db.query(query)
 

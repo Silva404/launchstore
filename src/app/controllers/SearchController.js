@@ -5,8 +5,9 @@ const Product = require('../models/Product')
 module.exports = {
   async index(req, res) {
     try {
-      let results,
-        params = {}
+
+      let results = '',
+          params = {}
 
       const { filter, category } = req.query
 
@@ -15,10 +16,8 @@ module.exports = {
       params.filter = filter
 
       if (category) {
-        params.category = category  
+        params.category = category
       }
-
-      results = await Product.search(params)
 
       async function getImage(productId) {
         let results = await Product.files(productId)
@@ -29,16 +28,15 @@ module.exports = {
         return results[0]
       }
 
-      const productsPromise = results.map(async product => {
+        results = results.map(async product => {
         product.image = await getImage(product.id)
         product.oldPrice = formatPrice(product.old_price)
         product.price = formatPrice(product.price)
 
         return product
       })
-      // NÃO ENTENDI O PORQUE DO FILTER
 
-      const products = await Promise.all(productsPromise)
+      const products = await Promise.all(results)
 
       const search = {
         term: req.query.filter,
