@@ -12,12 +12,12 @@
         {% if not files[0] %}
           <img src="http://placehold.it/500x500" alt="">
           {% else%}
-          <img src="{{files[0].src}}" alt="{{files[0].name}}">
+          <img src="{{files[0].path}}" alt="{{files[0].name}}">
         {% endif %}
       </div>
       <div class="gallery-preview">
         {% for image in files %}
-          <img src="{{image.src}}" alt="{{image.name}}" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+          <img src="{{image.path}}" alt="{{image.name}}" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
         {% endfor %}
       </div>
     </div>

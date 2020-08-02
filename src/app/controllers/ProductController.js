@@ -40,7 +40,7 @@ module.exports = {
   },
   async show(req, res) {
     let results = await Product.find(req.params.id)
-    const product = results.rows[0]
+    const product = results
 
     const { day, month, hours, minutes, year } = date(product.updated_at)
 
@@ -53,35 +53,32 @@ module.exports = {
     product.old_price = formatPrice(product.old_price)
 
     results = await Product.files(product.id)
-    const files = results.rows.map(file => ({
+    results = results.map(file => ({
       ...file,
-      src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+      path: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
     }))
 
     if (!product) return res.send('product not found')
 
-    return res.render('products/show', { product, files })
+    return res.render('products/show', { product, files: results })
   },
   async edit(req, res) {
-    let results = await Product.find(req.params.id)
-    const product = results.rows[0]
+    const product = await Product.find(req.params.id)
 
     if (!product) return res.send('Product not found!')
 
     product.old_price = formatPrice(product.old_price)
     product.price = formatPrice(product.price)
 
-    results = await Category.all()
-    const categories = results.rows
+    const categories = await Category.all()
 
-    results = await Product.files(product.id)
-    let files = results.rows
-    files = files.map(file => ({
+    let results = await Product.files(product.id)
+    results = results.map(file => ({
       ...file,
-      src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
+      path: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
     }))
 
-    return res.render('products/edit.njk', { product, categories, files })
+    return res.render('products/edit.njk', { product, categories, files: results })
   },
   async put(req, res) {
     const keys = Object.keys(req.body)
@@ -113,7 +110,7 @@ module.exports = {
     if (req.body.old_price !== req.body.price) {
       const oldProduct = await Product.find(req.body.id)
 
-      req.body.old_price = oldProduct.rows[0].price
+      req.body.old_price = oldProduct.price
     }
 
     await Product.update(req.body)
