@@ -63,7 +63,7 @@ const Validate = {
     div.classList.add('error')
     div.innerHTML = error
     input.parentNode.appendChild(div)
-    
+
     input.focus()
   },
   clearError(input) {
@@ -87,7 +87,20 @@ const Validate = {
     }
   },
   isCpfCnpj(value) {
-    
+    let error = null
+
+    const cleanValues = value.replace(/\D/, "")
+
+    if (cleanValues.length > 11 && cleanValues.length !== 14) {
+      error = "CNPJ incorreto"
+    } else if (cleanValues.length < 12 && cleanValues.length !== 11){
+      error = "CPF incorreto"
+    }
+
+    return {
+        error,
+        value
+      }
   }
 }
 
