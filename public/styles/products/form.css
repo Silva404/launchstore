@@ -32,7 +32,7 @@ form .item > div:nth-child(1) {
 form .fields {
   color: var(--secondary-txt-color);
 }
-
+form .item input.input,
 form .item input[type="text"],
 form .item input[type="number"],
 form .item textarea,
@@ -166,4 +166,8 @@ form .item #photos-preview .photo:hover i {
 form .item #photos-preview img:hover {
   transform: scale(1.05);
   opacity: 0.5;
+}
+
+.user-register.container {
+  max-width: 500px;
 }

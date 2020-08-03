@@ -1,21 +1,21 @@
 <div class="item">
   <div>Nome completo</div>
   <div>
-    <input type="text" name="name" placeholder="Digite seu nome completo" value="{{ user.name }}">
+    <input class="input" type="text" name="name" placeholder="Digite seu nome completo" value="{{ user.name }}">
   </div>
 </div>
 
 <div class="item">
   <div>Email</div>
   <div>
-    <input type="email" name="email" placeholder="Digite seu email" value="{{ user.email }}">
+    <input class="input" type="email" name="email" placeholder="Digite seu email" value="{{ user.email }}">
   </div>
 </div>
 
 <div class="item">
   <div>Senha</div>
   <div>
-    <input type="password" name="password" placeholder="Escolha uma senha segura" value="{{ user.password }}">
+    <input class="input" type="password" name="password" placeholder="Escolha uma senha segura" value="{{ user.password }}">
   </div>
 </div>
 
@@ -23,7 +23,7 @@
   <div class="item">
     <div>Repetir Senha</div>
     <div>
-      <input type="password" name="passwordRepeat" placeholder="Repita a senha escolhida">
+      <input class="input" type="password" name="passwordRepeat" placeholder="Repita a senha escolhida">
     </div>
   </div>
 {% endif %}
@@ -31,20 +31,20 @@
 <div class="item">
   <div>CPF ou CNPJ</div>
   <div>
-    <input type="text" name="cpf_cnpj" placeholder="Digite seu documento" value="{{ user.cpf_cnpj }}">
+    <input class="input" type="text" name="cpf_cnpj" placeholder="Digite seu documento" value="{{ user.cpf_cnpj }}" onkeydown="Mask.apply(this, 'cpfCnpj')">
   </div>
 </div>
 
 <div class="item">
   <div>CEP</div>
   <div>
-    <input type="text" name="cep" placeholder="99999-999" value="{{ user.cep }}">
+    <input class="input" type="text" name="cep" placeholder="99999-999" value="{{ user.cep }}">
   </div>
 </div>
 
 <div class="item">
   <div>Endereço completo</div>
   <div>
-    <input type="text" name="address" placeholder="Digite seu endereço completo" value="{{ user.address }}">
+    <input class="input" type="text" name="address" placeholder="Digite seu endereço completo" value="{{ user.address }}">
   </div>
 </div>

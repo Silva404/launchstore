@@ -23,5 +23,4 @@ routes.get('/register', UserController.registerForm)
 // routes.put('/register', UserController.put)
 // routes.delete('/register', UserController.delete)
 
-
 module.exports = routes
