@@ -171,3 +171,12 @@ form .item #photos-preview img:hover {
 .user-register.container {
   max-width: 500px;
 }
+form .item .invalid:focus {
+  border:  1px solid tomato;
+}
+
+.error {
+  font-size: 1.4rem;
+  margin: 0.25em 0 0;
+  color: tomato;
+}

@@ -47,7 +47,47 @@ const Mask = {
 
 const Validate = {
   apply(input, func) {
-    input.value = Mask[func](input.value)
+    this.clearError(input)
+
+    let results = Validate[func](input.value)
+    input.value = results.value
+
+    if (results.error) this.displayError(input, results.error)
+
+  },
+  displayError(input, error) {
+    const email = document.querySelector('input[name=email]')
+    email.classList.add('invalid')
+
+    const div = document.createElement('div')
+    div.classList.add('error')
+    div.innerHTML = error
+    input.parentNode.appendChild(div)
+    
+    input.focus()
+  },
+  clearError(input) {
+    const errorDiv = document.querySelector('.error')
+    if (errorDiv) errorDiv.remove()
+  },
+  isEmail(value) {
+    let error = null
+    // /^\ quer dizer que tem que começar com algo, o 'w' logo em seguida são letras e o '+' é uma ou mais letras
+    // ([\.-]?) diz que pode vir ou não(?) após essas letras um '.' ou '-'
+    // w+ mais letras e o '*' no final é o mesmo que o '?', pode vir ou não
+    // \w{2}, pode ter letras com o limite de duas
+    // $ pra dizer que tem que terminar a expressão que ele estiver
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+    if (!value.match(mailFormat)) error = "Email inválido"
+
+    return {
+      error,
+      value
+    }
+  },
+  isCpfCnpj(value) {
+    
   }
 }
 
