@@ -8,7 +8,7 @@
 <div class="item">
   <div>Email</div>
   <div>
-    <input class="input" type="email" name="email" placeholder="Digite seu email" value="{{ user.email }}">
+    <input class="input" type="email" name="email" placeholder="Digite seu email" value="{{ user.email }}" onblur="Validate.apply(this, 'isEmail')">
   </div>
 </div>
 
@@ -38,7 +38,8 @@
 <div class="item">
   <div>CEP</div>
   <div>
-    <input class="input" type="text" name="cep" placeholder="99999-999" value="{{ user.cep }}">
+    <input class="input" type="text" name="cep" placeholder="99999-999" value="{{ user.cep }}"
+    onkeydown="Mask.apply(this, 'cep')">
   </div>
 </div>
 
