@@ -31,7 +31,8 @@
 <div class="item">
   <div>CPF ou CNPJ</div>
   <div>
-    <input class="input" type="text" name="cpf_cnpj" placeholder="Digite seu documento" value="{{ user.cpf_cnpj }}" onkeydown="Mask.apply(this, 'cpfCnpj')">
+    <input class="input" type="text" name="cpf_cnpj" placeholder="Digite seu documento" value="{{ user.cpf_cnpj }}" onkeydown="Mask.apply(this, 'cpfCnpj')"
+    onblur="Mask.apply(this, 'cpfCnpj')">
   </div>
 </div>
 
@@ -39,7 +40,8 @@
   <div>CEP</div>
   <div>
     <input class="input" type="text" name="cep" placeholder="99999-999" value="{{ user.cep }}"
-    onkeydown="Mask.apply(this, 'cep')">
+    onkeydown="Mask.apply(this, 'cep')"
+    onblur="Mask.apply(this, 'isCep')">
   </div>
 </div>
 
