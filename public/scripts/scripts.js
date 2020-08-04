@@ -53,7 +53,6 @@ const Validate = {
     input.value = results.value
 
     if (results.error) this.displayError(input, results.error)
-
   },
   displayError(input, error) {
     const email = document.querySelector('input[name=email]')
@@ -72,11 +71,6 @@ const Validate = {
   },
   isEmail(value) {
     let error = null
-    // /^\ quer dizer que tem que começar com algo, o 'w' logo em seguida são letras e o '+' é uma ou mais letras
-    // ([\.-]?) diz que pode vir ou não(?) após essas letras um '.' ou '-'
-    // w+ mais letras e o '*' no final é o mesmo que o '?', pode vir ou não
-    // \w{2}, pode ter letras com o limite de duas
-    // $ pra dizer que tem que terminar a expressão que ele estiver
     const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
     if (!value.match(mailFormat)) error = "Email inválido"

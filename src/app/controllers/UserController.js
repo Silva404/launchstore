@@ -11,13 +11,12 @@ module.exports = {
       }
     }
 
-    //if user exists !== não deixar cpf duplicado
     const { email, cpf_cnpj } = req.body
-    const user = await user.findOne({
+    const user = await User.findOne({
       where: { email },
       or: { cpf_cnpj }
     })
+    
 
-    //check password matches  
   }
 }
