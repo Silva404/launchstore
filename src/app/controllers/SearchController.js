@@ -5,7 +5,6 @@ const Product = require('../models/Product')
 module.exports = {
   async index(req, res) {
     try {
-
       let results = '',
         params = {}
 

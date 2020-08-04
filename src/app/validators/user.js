@@ -1,5 +1,4 @@
 const User = require('../models/User')
-const { create } = require('browser-sync')
 
 async function post(req, res, next) {
   const keys = Object.keys(req.body)
