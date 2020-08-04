@@ -33,16 +33,18 @@ module.exports = {
 
   data.price = data.price.replace(/\D/g, '')
 
+  const passwordHas = ''
+
   const values = [
     data.name,
     data.email,
-    data.password,
-    data.cpf_cnpj,
-    data.cep,
+    passwordHash,
+    data.cpf_cnpj.replace(/\D/g,""),
+    data.cep.replace(/\D/g,""),
     data.address
   ]
-  const results = await db.query(query, values)
 
-  return results.rows
+  const results = await db.query(query, values)
+  return results.rows[0].id
 }
 }
