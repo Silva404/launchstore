@@ -24,7 +24,7 @@ async function post(req, res, next) {
 
     if (password != passwordRepeat) return res.render('user/register', {
       user: req.body,
-      error: 'Senhas diferentes.'
+      error: 'A senha e sua repetição estão incorretas.'
     })
     next()
 }

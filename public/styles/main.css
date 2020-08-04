@@ -12,7 +12,7 @@
     --button-regular-txt: #F3F5FF;
     --button-inverted-border: #7472D1;
     --button-inverted-txt: #5353C6;
-    --button-delete-bg: #FFEFEF;
+    --button-delete-bg: #ffe8e8;
     --button-delete-txt: #ED6266;
     --input-border-color: #D5D9DC;
 }
@@ -42,6 +42,7 @@ body {
     height: 100vh;
     font-size: 1.6rem;
     line-height: 1.6em;
+    position: relative;
 
     display: flex;
     flex-direction: column;
