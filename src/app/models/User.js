@@ -31,10 +31,7 @@ module.exports = {
     ) VALUES ($1, $2, $3, $4, $5, $6) 
     RETURNING id
   `
-
-    data.price = data.price.replace(/\D/g, '')
-
-    const passwordHas = await hash(data.password, 8)
+    const passwordHash = await hash(data.password, 8)
 
     const values = [
       data.name,

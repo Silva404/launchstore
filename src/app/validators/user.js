@@ -22,12 +22,12 @@ async function post(req, res, next) {
     
     if (user) return res.render('user/register', {
       user: req.body,
-      alert: 'Usuário já cadastrado.'
+      error: 'Usuário já cadastrado.'
     })
 
     if (password != passwordRepeat) return res.render('user/register', {
       user: req.body,
-      error: 'A senha e sua repetição estão incorretas.'
+      alert: 'A senha e sua repetição estão incorretas.'
     })
 
     next()
