@@ -1,7 +1,7 @@
 .messages {
   position: absolute;
   top: 15%;
-  right: 10%;
+  right: 5%;
   z-index: 10;
 
 
@@ -17,6 +17,18 @@
 .messages.error {
   background: var(--button-delete-bg);
   color: var(--button-delete-txt);
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.05);
+}
+
+.messages.alert {
+  background: var(--alert-bg);
+  color: var(--alert-txt);
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.05);
+}
+
+.messages.sucess {
+  background: var(--estoque-bg);
+  color: var(--estoque-txt);
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.05);
 }
 

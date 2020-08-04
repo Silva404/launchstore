@@ -5,6 +5,9 @@ module.exports = {
     return res.render('user/register')
   },
   async post(req, res) {
-    return res.send('passed')
+    return res.render('user/register', {
+      user: req.body,
+      sucess: 'Cadastro com sucesso.'
+    })
   }
 }

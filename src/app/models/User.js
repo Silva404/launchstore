@@ -17,5 +17,32 @@ module.exports = {
     const results = await db.query(query)
 
     return results.rows[0]
-  }
+  },
+  async create(data) {
+    const query = `
+    INSERT INTO users (
+      name,
+      email,
+      password,
+      cpf_cnpj,
+      cep,
+      address
+    ) VALUES ($1, $2, $3, $4, $5, $6) 
+    RETURNING id
+  `
+
+  data.price = data.price.replace(/\D/g, '')
+
+  const values = [
+    data.name,
+    data.email,
+    data.password,
+    data.cpf_cnpj,
+    data.cep,
+    data.address
+  ]
+  const results = await db.query(query, values)
+
+  return results.rows
+}
 }
