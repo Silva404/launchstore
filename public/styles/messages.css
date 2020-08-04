@@ -11,7 +11,7 @@
   padding: 2em 2em;
   border-radius: 0.5em;
   opacity: 1;
-  /* animation: up 4s 0.2s forwards; */
+  animation: up 4s 0.2s forwards;
 }
 
 .messages.error {

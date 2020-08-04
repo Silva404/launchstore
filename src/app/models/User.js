@@ -1,4 +1,5 @@
 const db = require('../../config/db')
+const { hash } = require('bcryptjs')
 
 module.exports = {
   async findOne(filters) {
@@ -31,20 +32,20 @@ module.exports = {
     RETURNING id
   `
 
-  data.price = data.price.replace(/\D/g, '')
+    data.price = data.price.replace(/\D/g, '')
 
-  const passwordHas = ''
+    const passwordHas = await hash(data.password, 8)
 
-  const values = [
-    data.name,
-    data.email,
-    passwordHash,
-    data.cpf_cnpj.replace(/\D/g,""),
-    data.cep.replace(/\D/g,""),
-    data.address
-  ]
+    const values = [
+      data.name,
+      data.email,
+      passwordHash,
+      data.cpf_cnpj.replace(/\D/g, ""),
+      data.cep.replace(/\D/g, ""),
+      data.address
+    ]
 
-  const results = await db.query(query, values)
-  return results.rows[0].id
-}
+    const results = await db.query(query, values)
+    return results.rows[0].id
+  }
 }
