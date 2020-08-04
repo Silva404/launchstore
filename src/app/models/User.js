@@ -1,15 +1,15 @@
 const db = require('../../config/db')
 
 module.exports = {
-  findOne(filter) {
+  async findOne(filters) {
     let query = `SELECT * FROM users`
 
-    Object.keys(filter).map(key => {
+    Object.keys(filters).map(key => {
       query = `
         ${query}
         ${key}
       `
-      Object.keys(filter[key]).map(field => {
+      Object.keys(filters[key]).map(field => {
         query = `${query} ${field} = '${filters[key][field]}'`
       })
     })
