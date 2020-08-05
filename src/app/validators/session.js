@@ -67,7 +67,7 @@ async function reset(req, res, next) {
     if (token != user.token) return res.render('session/password-reset', {
       user: req.body,
       token,
-      alert: 'Chave inválida, solicite uma nova recuperação de senha'
+      error: 'Chave inválida, solicite uma nova recuperação de senha'
     })
     
     let now = new Date
@@ -76,7 +76,7 @@ async function reset(req, res, next) {
     if (now != user.reset_token_expires) return res.render('session/password-reset', {
       user: req.body,
       token,
-      alert: 'Chave expirada, solicite uma nova recuperação de senha'
+      error: 'Chave expirada, solicite uma nova recuperação de senha'
     })
 
     req.user = user
