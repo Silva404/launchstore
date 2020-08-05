@@ -1,37 +1,68 @@
 const User = require('../models/User')
 
+function checkAllFields(body) {
+  const keys = Object.keys(body)
+
+  for (let key of keys) {
+    if (body[key] == '') {
+      return  {
+        user: body,
+        alert: 'Por favor, preencha todos os campos.'
+      }
+    }
+  }
+}
+
+async function show(req, res, next) {
+  const { userId: id } = req.session
+
+  const user = await User.findOne({ where: { id } })
+
+  if (!user) return res.render("user/register", {
+    error: "Usuário não encontrado!"
+  })
+
+  req.user = user
+
+  next()
+}
+
 async function post(req, res, next) {
-  const keys = Object.keys(req.body)
+  const fillAllFields = checkAllFields(req.body)
+  if (fillAllFields) {
+    res.render('user/register', fillAllFields)
+  }
 
-    for (let key of keys) {
-      if (req.body[key] == '') {
-        return res.render('user/register', {
-          user: req.body,
-          alert: 'Por favor, preencha todos os campos.'
-        })
-    }}
+  let { email, cpf_cnpj, password, passwordRepeat } = req.body
+  cpf_cnpj = cpf_cnpj.replace(/\D/g, "")
 
-    let { email, cpf_cnpj, password, passwordRepeat } = req.body
-    cpf_cnpj = cpf_cnpj.replace(/\D/g, "")
+  const user = await User.findOne({
+    where: { email },
+    or: { cpf_cnpj }
+  })
 
-    const user = await User.findOne({
-      where: { email },
-      or: { cpf_cnpj }
-    })
-    
-    if (user) return res.render('user/register', {
-      user: req.body,
-      error: 'Usuário já cadastrado.'
-    })
+  if (user) return res.render('user/register', {
+    user: req.body,
+    error: 'Usuário já cadastrado.'
+  })
 
-    if (password != passwordRepeat) return res.render('user/register', {
-      user: req.body,
-      alert: 'A senha e sua repetição estão incorretas.'
-    })
+  if (password != passwordRepeat) return res.render('user/register', {
+    user: req.body,
+    alert: 'A senha e sua repetição estão incorretas.'
+  })
 
-    next()
+  next()
+}
+
+async function update(req, res, next) {
+  const fillAllFields = checkAllFields(req.body)
+  if (fillAllFields) {
+    res.render('user/index', fillAllFields)
+  }
+
 }
 
 module.exports = {
-  post
+  post,
+  show
 }
