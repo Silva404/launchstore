@@ -181,7 +181,8 @@ form .item .invalid:focus {
   color: tomato;
 }
 
-.login.container.form {
+.login.container.form,
+.password.container.form {
   width: 500px;
 }
 
