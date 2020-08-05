@@ -61,10 +61,9 @@ module.exports = {
     })
 
     await db.query(query)
-    return
   },
   async delete(id) {
-    const results = await db.query(`SELECT * FROM products WHERE user_id = $1`)
+    const results = await db.query(`SELECT * FROM products WHERE user_id = $1`, [id])
     const product = results.rows
 
     const allFilesPromise = product.map(product => Product.files(product.id))

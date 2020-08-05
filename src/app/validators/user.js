@@ -69,7 +69,7 @@ async function update(req, res, next) {
   if (!password) return res.render('user/index', {
     user: req.body,
     error: "Coloque sua senha para atualizar o cadastro!"
-  })
+  }) 
 
   const user = await User.findOne({ where: { id } })
 
