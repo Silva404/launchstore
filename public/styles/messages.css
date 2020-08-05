@@ -26,7 +26,7 @@
   
 }
 
-.messages.sucess {
+.messages.success {
   background: var(--estoque-bg);
   color: var(--estoque-txt);
 }

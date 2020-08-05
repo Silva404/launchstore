@@ -61,18 +61,18 @@ module.exports = {
     return res.render('session/password-reset', { token: req.query.token })
   },
   async reset(req, res) {
-    const { user } = req.user
-    const { password } = req.body
+    const  user = req.user
+    const { password, token } = req.body
+    console.log(`TOKEN DO CONTROLLER ${token}`);
 
     try {
       const newPassword = await hash(password, 8)
 
-      await User.update(user, {
+      await User.update(user.id, {
         password: newPassword,
         reset_token: '',
         reset_token_expires: ''
       })
-
 
       return res.render('session/login', {
         user: req.body,
@@ -80,7 +80,9 @@ module.exports = {
       })
     } catch (err) {
       console.error(err)
-      return res.render('session/forgot-password', {
+      return res.render('session/login', {
+        user: req.body,
+        token,
         error: "Erro inesperado, tente novamente"
       })
     }
