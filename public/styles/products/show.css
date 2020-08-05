@@ -98,7 +98,7 @@
 
 .gallery .gallery-preview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  grid-template-columns: repeat(6, minmax(60px, 1fr));
   gap: 0.5em;
 }
 
@@ -107,7 +107,6 @@
   width: 100%;
   opacity: 0.6;
   border-radius: 0.25em;
-  border: 1px solid var(--secondary-txt-color);
   object-fit: cover;  
   cursor: pointer;
 
