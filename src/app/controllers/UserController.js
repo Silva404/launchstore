@@ -21,6 +21,13 @@ module.exports = {
     return res.redirect('/users')
   },
   async update(req, res) {
-    
+    try {
+
+    } catch(err) {
+      console.error(err)
+      return res.render("user/index", {
+        error: "Algum erro aconteceu!"
+      })
+    }
   }
 }
