@@ -180,3 +180,27 @@ form .item .invalid:focus {
   margin: 0.25em 0 0;
   color: tomato;
 }
+
+.login.container.form {
+  width: 500px;
+}
+
+.footer ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.footer ul li {
+  font-size: 1.4rem;
+  margin-top: 1em;
+}
+
+.footer ul li a {
+  color: var(--input-txt-color);
+  font-weight: 500;
+}
+
+.footer ul li a:hover {
+  color: var(--primary-color);
+}

@@ -1,0 +1,44 @@
+.accounts {
+  position: relative;
+}
+
+.accounts ul.submenu {
+  position: absolute;
+  top: 1.2em;
+  left: 0;
+
+  margin-top: 0.5em;
+  width: 150px;
+  display: block;
+  background: var(--button-regular-txt);
+  border-radius: .5em;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: 0.2s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.accounts .submenu li a,
+.accounts .submenu li button {
+  color: var(--secondary-txt-color);
+  font-size: 1.4rem;
+  border-radius: .5em;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  
+  cursor: pointer;
+  padding: 0.5em 1em;
+  display: inline-block;
+  width: 100%;
+}
+
+
+.accounts .submenu li a:hover,
+.accounts .submenu li button:hover  {
+  color: var(--terciary-color);
+  font-weight: 500;
+}
+
+.accounts:hover ul.submenu {
+  opacity: 1;
+  visibility: initial;
+}

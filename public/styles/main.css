@@ -102,7 +102,7 @@ header input:focus {
     border-radius: 2px;    
 }
 
-nav.primary ul li {
+nav.primary ul {
     display: flex;
     justify-content: space-between;
 }

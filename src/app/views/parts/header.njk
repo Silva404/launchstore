@@ -8,7 +8,7 @@
     </a>
 
     <form class="search" action="/products/search" method="get">
-      <input type="text" name="filter" placeholder="Buscar por produtos" {% if search.term %} value={{search.term} }="}" {% endif %}>
+      <input type="text" name="filter" placeholder="Buscar por produtos" {% if search.term %} value={{search.term}} {% endif %}>
     </form>
 
     <nav class="primary">
@@ -24,7 +24,7 @@
             <i class="material-icons">account_circle</i>
             Minha conta
           </a>
-          <ul>
+          {% if user %}
             <ul class="submenu">
               <li>
                 <a href="/users">Configurações</a>
@@ -36,10 +36,12 @@
                 <a href="/selling">Minhas vendas</a>
               </li>
               <li>
-                
+                <form action="users/logout" method="POST">
+                  <button>Sair</button>
+                </form>
               </li>
             </ul>
-          </ul>
+          {% endif %}
         </li>
       </ul>
     </nav>
