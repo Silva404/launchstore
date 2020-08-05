@@ -17,15 +17,19 @@ function checkAllFields(body) {
 async function show(req, res, next) {
   const { userId: id } = req.session
 
-  const user = await User.findOne({ where: { id } })
+  try {
+    const user = await User.findOne({ where: { id } })
 
-  if (!user) return res.render("user/register", {
-    error: "Usuário não encontrado!"
-  })
+    if (!user) return res.render("user/register", {
+      error: "Usuário não encontrado!"
+    })
 
-  req.user = user
+    req.user = user
 
-  next()
+    next()
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 async function post(req, res, next) {
@@ -71,7 +75,7 @@ async function update(req, res, next) {
 
   const passed = await compare(password, user.password)
 
-  if(!passed) return res.render("user/index", {
+  if (!passed) return res.render("user/index", {
     user: req.body,
     error: "Senha incorreta."
   })
