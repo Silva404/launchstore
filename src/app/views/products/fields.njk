@@ -3,10 +3,18 @@
   <div>
     <select name="category_id">
       {% for category in categories %}
-        <option value="{{category.id}}" {% if products.category_id == categories.id%} selected="selected" {% endif %}>
-          {{category.name}}
-        </option>
+        {% if category.id == product.category_id %}
+          <option value="{{category.id}}" {% if products.category_id == categories.id %} selected="selected" {% endif %}>
+            {{category.name}}
+          </option>
+          {% else%}
+          <option value="{{category.id}}" {% if products.category_id == categories.id %} selected="selected" {% endif %}>
+            {{category.name}}
+          </option>
+        {% endif %}
+
       {% endfor %}
+
     </select>
   </div>
 </div>
@@ -38,13 +46,12 @@
     <div id="photos-preview">
       {% if files %}
         {% for image in files %}
-        <div class="photo" id={{image.id}}>
-          <img src="{{image.path}}" alt="{{image.name}}">
-          <i class="material-icons"
-          onclick="PhotosUpload.removeOldPhoto(event)">
-            delete_forever
-          </i>
-        </div>
+          <div class="photo" id={{image.id}}>
+            <img src="{{image.path}}" alt="{{image.name}}">
+            <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">
+              delete_forever
+            </i>
+          </div>
         {% endfor %}
         <input type="hidden" name="removed_files">
       {% endif %}
