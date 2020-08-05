@@ -83,5 +83,6 @@ async function update(req, res, next) {
 
 module.exports = {
   post,
-  show
+  show,
+  update
 }
