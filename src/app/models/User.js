@@ -61,20 +61,27 @@ module.exports = {
     })
 
     await db.query(query)
-    return 
+    return
   },
   async delete(id) {
-    const results = await db.query(`SELECT * FROM products WHERE user_id = $1`)    
+    const results = await db.query(`SELECT * FROM products WHERE user_id = $1`)
     const product = results.rows
 
     const allFilesPromise = product.map(product => Product.files(product.id))
 
     const promiseResults = await Promise.all(allFilesPromise)
-    
+
     await db.query(`DELETE FROM users WHERE id = $1`, [id])
 
-    promiseResults.map(results => results.rows.map(file => fs.unlinkSync(file.path))) 
-
+    promiseResults.map(results => {
+      results.rows.map(file => {
+        try {
+          fs.unlinkSync(file.path)
+        } catch (err) {
+          console.error(err)
+        }
+      })
+    })
   }
 
 }
