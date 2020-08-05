@@ -25,6 +25,7 @@ module.exports = {
 
     if (req.files.length == 0) return res.send('send some file')
 
+    req.body.user_id = req.session.userId
     let results = await Product.create(req.body)
     const productId = results[0].id
 
