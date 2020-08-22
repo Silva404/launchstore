@@ -1,5 +1,5 @@
 const db = require("../../config/db");
-const { hash, decodeBase64 } = require("bcryptjs");
+const { hash } = require("bcryptjs");
 const fs = require("fs");
 
 const Product = require("../models/Product");
@@ -7,7 +7,7 @@ const Product = require("../models/Product");
 const Base = require("./Base");
 Base.init({ table: "users" });
 
-module.exports = {
+const User = {
   ...Base,
   // async create(data) {
   //   const query = `
@@ -35,41 +35,43 @@ module.exports = {
   //   const results = await db.query(query, values);
   //   return results.rows[0].id;
   // },
-  async update(id, fields) {
-    let query = `UPDATE users SET`;
+  // async update(id, fields) {
+  //   let query = `UPDATE users SET`;
 
-    Object.keys(fields).map((key, index, array) => {
-      if (index + 1 < array.length) {
-        query = `${query} ${key} = '${fields[key]}',`;
-      } else {
-        query = `${query} ${key} = '${fields[key]}'
-        WHERE id = ${id}`;
-      }
-    });
+  //   Object.keys(fields).map((key, index, array) => {
+  //     if (index + 1 < array.length) {
+  //       query = `${query} ${key} = '${fields[key]}',`;
+  //     } else {
+  //       query = `${query} ${key} = '${fields[key]}'
+  //       WHERE id = ${id}`;
+  //     }
+  //   });
 
-    await db.query(query);
-  },
-  async delete(id) {
-    const results = await db.query(
-      `SELECT * FROM products WHERE user_id = $1`,
-      [id]
-    );
-    const product = results.rows;
+  //   await db.query(query);
+  // },
+  // async delete(id) {
+  //   const results = await db.query(
+  //     `SELECT * FROM products WHERE user_id = $1`,
+  //     [id]
+  //   );
+  //   const product = results.rows;
 
-    const allFilesPromise = product.map((product) => Product.files(product.id));
+  //   const allFilesPromise = product.map((product) => Product.files(product.id));
 
-    const promiseResults = await Promise.all(allFilesPromise);
+  //   const promiseResults = await Promise.all(allFilesPromise);
 
-    await db.query(`DELETE FROM users WHERE id = $1`, [id]);
+  //   await db.query(`DELETE FROM users WHERE id = $1`, [id]);
 
-    promiseResults.map((results) => {
-      results.rows.map((file) => {
-        try {
-          fs.unlinkSync(file.path);
-        } catch (err) {
-          console.error(err);
-        }
-      });
-    });
-  },
+  //   promiseResults.map((results) => {
+  //     results.rows.map((file) => {
+  //       try {
+  //         fs.unlinkSync(file.path);
+  //       } catch (err) {
+  //         console.error(err);
+  //       }
+  //     });
+  //   });
+  // },
 };
+
+module.exports = User

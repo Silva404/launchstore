@@ -1,9 +1,6 @@
-const db = require('../../config/db')
+const Base = require("./Base");
+Base.init({ table: "categories" });
 
-module.exports = { 
-  async all() {
-    const results = await db.query(`SELECT * FROM categories`)
-
-    return results.rows
-  }
+module.exports = {
+  ...Base,
 }
