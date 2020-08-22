@@ -7,8 +7,10 @@ function find(filters, table) {
     query += `${key}`;
 
     Object.keys(filters[key]).map((field) => {
-      query += `${field} = '${filters[key][field]}'`;
+      query += ` ${field} = '${filters[key][field]}'`;
     });
+
+    return db.query(query);
   });
 }
 
@@ -42,22 +44,20 @@ const Base = {
       console.error(error);
     }
   },
-  async findOne(filters) {
-    let query = `SELECT * FROM ${this.table}`;
-
-    Object.keys(filters).map((key) => {
-      query = `
-        ${query}
-        ${key}
-      `;
-      Object.keys(filters[key]).map((field) => {
-        query = `${query} ${field} = '${filters[key][field]}'`;
-      });
-    });
-
-    const results = await db.query(query);
+  async find(id) {
+    const results = await find({ where: { id } }, this.table);
 
     return results.rows[0];
+  },
+  async findOne(filters) {
+    const results = await find(filters, this.table);
+
+    return results.rows[0];
+  },
+  async findAll(filters) {
+    const results = await find(filters, this.table);
+
+    return results.rows;
   },
   update(id, fields) {
     let update = [];
