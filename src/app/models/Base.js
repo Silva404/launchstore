@@ -32,7 +32,7 @@ const Base = {
 
       Object.keys(fields).map((key) => {
         keys.push(key);
-        values.push(fields[key]);
+        values.push(`'${fields[key]}'`);
       });
 
       const query = `
@@ -65,10 +65,10 @@ const Base = {
   update(id, fields) {
     let update = [];
 
-    Object.keys(fields).map((key, index, array) => {
-      const line = (`${key}` = `${fields[key]}`);
-      update.push(line);
-    });
+    // Object.keys(fields).map((key, index, array) => {
+    //   const line = (`${key}` = `${fields[key]}`);
+    //   update.push(line);
+    // });
 
     let query = `UPDATE ${this.table} 
     SET ${update.join(",")} WHERE id = ${id}`;
