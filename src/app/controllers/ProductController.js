@@ -7,37 +7,60 @@ const { formatPrice, date } = require('../../lib/utils')
 module.exports = {
   async create(req, res) {
     try {
-      const categories = await Category.all()
+      const categories = await Category.findAll()
 
-      return res.render('products/create.njk', { categories })
+      return res.render('products/create', { categories })
     } catch (err) {
       console.log(err)
     }
   },
   async post(req, res) {
-    const keys = Object.keys(req.body)
+    try {
+      const keys = Object.keys(req.body)
 
-    for (let key of keys) {
-      if (req.body[key] == '') {
-        return res.send('Please fill all the fields!')
+      for (let key of keys) {
+        if (req.body[key] == '') {
+          return res.send('Please fill all the fields!')
+        }
       }
+
+      if (req.files.length == 0) return res.send('send some file')
+
+      let {
+        category_id,
+        name,
+        description,
+        user_id,
+        old_price,
+        price,
+        quantity,
+        status } = req.body
+
+      price = price.replace(/\D/g, "")
+
+      const product_id = await Product.create({
+        category_id,
+        name,
+        description,
+        user_id: req.session.userId,
+        old_price: price,
+        price,
+        quantity,
+        status: 1,
+      })
+
+      const filesPromise = req.files.map(file =>
+        File.create({
+          ...file,
+          product_id
+        }))
+
+      await Promise.all(filesPromise)
+
+      return res.redirect(`/products/${product_id}/edit`)
+    } catch (error) {
+      console.error(error);
     }
-
-    if (req.files.length == 0) return res.send('send some file')
-
-    req.body.user_id = req.session.userId
-    let results = await Product.create(req.body)
-    const productId = results[0].id
-
-    const filesPromise = req.files.map(file => File.create({
-      ...file,
-      product_id: productId
-    }))
-
-    await Promise.all(filesPromise)
-
-    return res.redirect(`/products/${productId}/edit`)
-
   },
   async show(req, res) {
     let results = await Product.find(req.params.id)

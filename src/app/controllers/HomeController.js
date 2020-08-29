@@ -5,7 +5,7 @@ const Product = require('../models/Product')
 module.exports = {
   async index(req, res) {
     try {
-      const products = await Product.all()
+      const products = await Product.findAll()
 
       if (!products) return res.send('Products not found!')
 
